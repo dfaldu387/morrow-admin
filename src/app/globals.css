@@ -427,6 +427,7 @@ table .user-cell .avatar {
   background: var(--bg);
 }
 
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -732,9 +733,34 @@ table .user-cell .avatar {
 .user-select-item:hover { background: rgba(254,141,161,0.03); }
 
 .user-select-item input[type="checkbox"] {
-  accent-color: var(--primary);
-  width: 16px;
-  height: 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.user-select-item input[type="checkbox"]:checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.user-select-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  content: '✓';
+  font-weight: 700;
 }
 
 .user-select-item .user-select-avatar {
@@ -810,7 +836,6 @@ table .user-cell .avatar {
 
 .type-badge.info { background: rgba(54,162,235,0.12); color: #36A2EB; }
 .type-badge.update { background: rgba(46,213,115,0.12); color: var(--success); }
-.type-badge.promotion { background: rgba(255,237,0,0.15); color: #c5a800; }
 .type-badge.alert { background: rgba(255,71,87,0.12); color: var(--danger); }
 .type-badge.general { background: rgba(136,136,160,0.12); color: var(--text-muted); }
 

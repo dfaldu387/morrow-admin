@@ -2,22 +2,19 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import AdminLayout, { useAuthReady } from '@/components/AdminLayout';
-import { IconEdit, IconClipboard, IconBarChart, IconBell, IconSend, IconInbox, IconCheckCircle, IconMailOpen, IconTrendingUp, IconInfo, IconZap, IconStar, IconWarning, IconTool, IconGlobe, IconUser } from '@/components/Icons';
+import { IconEdit, IconClipboard, IconBarChart, IconBell, IconSend, IconInbox, IconCheckCircle, IconMailOpen, IconTrendingUp, IconInfo, IconZap, IconWarning, IconTool, IconGlobe, IconUser } from '@/components/Icons';
 import { api } from '@/lib/api';
 
 const TEMPLATES = [
   { id: 'welcome', icon: <IconUser size={16} />, title: 'Welcome!', body: 'Welcome to Morrow! Start building great habits today.', type: 'info' },
   { id: 'update', icon: <IconZap size={16} />, title: 'New Update Available', body: 'We\'ve added exciting new features! Update your app to check them out.', type: 'update' },
   { id: 'streak', icon: <IconTrendingUp size={16} />, title: 'Keep Your Streak!', body: 'Don\'t forget to complete your habits today and keep your streak alive!', type: 'info' },
-  { id: 'motivation', icon: <IconStar size={16} />, title: 'You\'re Doing Great!', body: 'Your consistency is paying off. Keep pushing towards your goals!', type: 'info' },
-  { id: 'promo', icon: <IconStar size={16} />, title: 'Special Offer', body: 'Unlock premium features and take your habit tracking to the next level!', type: 'promotion' },
   { id: 'maintenance', icon: <IconTool size={16} />, title: 'Scheduled Maintenance', body: 'We\'ll be performing maintenance on our servers. The app may be briefly unavailable.', type: 'alert' },
 ];
 
 const TYPE_ICONS: Record<string, React.ReactNode> = {
   info: <IconInfo size={18} />,
   update: <IconZap size={18} />,
-  promotion: <IconStar size={18} />,
   alert: <IconWarning size={18} />,
   general: <IconBell size={18} />,
 };
@@ -234,7 +231,6 @@ function NotificationsContent() {
                   <select value={type} onChange={e => setType(e.target.value)} style={{ paddingLeft: 14 }}>
                     <option value="info">Info</option>
                     <option value="update">Update</option>
-                    <option value="promotion">Promotion</option>
                     <option value="alert">Alert</option>
                   </select>
                 </div>
@@ -298,6 +294,7 @@ function NotificationsContent() {
                             type="checkbox"
                             checked={selectedUsers.includes(user.id)}
                             onChange={() => toggleUser(user.id)}
+                            onClick={(e) => e.stopPropagation()}
                           />
                           <div className="user-select-avatar">
                             {user.name?.[0]?.toUpperCase() || '?'}
