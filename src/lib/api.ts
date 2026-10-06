@@ -56,4 +56,15 @@ export const api = {
   getNotificationStats: () => request('/notifications/stats'),
 
   getUsersList: () => request('/users?page=1&limit=100&search='),
+
+  getCategories: () => request('/categories'),
+
+  createCategory: (data: { name: string; emoji: string; sort_order: number }) =>
+    request('/categories', { method: 'POST', body: JSON.stringify(data) }),
+
+  updateCategory: (id: string, data: { name?: string; emoji?: string; is_active?: boolean; sort_order?: number }) =>
+    request(`/categories/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+
+  deleteCategory: (id: string) =>
+    request(`/categories/${id}`, { method: 'DELETE' }),
 };

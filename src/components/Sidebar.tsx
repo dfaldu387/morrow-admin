@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { DuckLogo, IconDashboard, IconUsers, IconHabits, IconBell, IconLogOut } from './Icons';
+import { DuckLogo, IconDashboard, IconUsers, IconHabits, IconBell, IconTag, IconLogOut } from './Icons';
 
 const navItems = [
   { href: '/', label: 'Dashboard', icon: <IconDashboard /> },
   { href: '/users', label: 'Users', icon: <IconUsers /> },
   { href: '/habits', label: 'Habits', icon: <IconHabits /> },
+  { href: '/categories', label: 'Categories', icon: <IconTag /> },
   { href: '/notifications', label: 'Notifications', icon: <IconBell /> },
 ];
 
